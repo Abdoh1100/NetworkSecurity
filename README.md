@@ -1,2 +1,2 @@
 # NetworkSecurity
-security implementation for infrastructure networking devices  
+implementing network security configuration X company infrastructure 
