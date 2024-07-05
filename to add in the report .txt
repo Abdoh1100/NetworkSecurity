@@ -1,0 +1,20 @@
+segmentation : 
+- vlans creation in the new site performing ROAS on the router for inter vlan routing 
+- performing vlsm subnetting for the site to make use of the available ip space 
+- add the configuration on sw 1 and sw0 and s2-r on the appendencies 
+- add a picture for s2 topology 
+
+
+for the HQ : 
+- interface g0/7 the router wasnt up 
+- ip address wasnt set 
+-ip of the routers was not in the same range 
+- repairing all R1HQ ip and links 
+- i did make sure that all the connections are going right pinging all to all 
+
+
+
+
+- questions should we manipulate any ips ? 
+- is it possible to use l3 switch in our topology ? to use svis routing between vlans ? 
+- what about the report is the marking will be restricted that much ? 
