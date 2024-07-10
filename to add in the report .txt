@@ -18,3 +18,5 @@ for the HQ :
 - questions should we manipulate any ips ? 
 - is it possible to use l3 switch in our topology ? to use svis routing between vlans ? 
 - what about the report is the marking will be restricted that much ? 
+
+get the financial implication for the topology that you might implement of you do not restricted to the current limitations of packet tracer 

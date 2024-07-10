@@ -1,0 +1,140 @@
+as the first part i will reconffigure current network to make sure it is secure : 
+
+The following recommendations to better secure network infrastructure according to CISA:
+	- segment and segregate networks and functions :
+
+
+
+
+
+
+	issues : 
+	1- no password on the switch of HQR1 means any intruder can miss witht the configuration 
+	2- 
+
+
+
+
+	brain storming : 
+	for L2 :
+		-port security => Enable Port Security: Configure port security on switches to limit the number of MAC addresses that can be learned on a single port. This prevents MAC flooding attacks.
+		Static MAC Addresses: Where possible, statically assign MAC addresses to switch ports to ensure only known devices can connect.
+	
+		- VLAN Configuration:
+			Use VLANs: Segment the network using VLANs to isolate different types of traffic, such as separating user traffic from server or management traffic.
+			Restrict VLAN Access: Limit VLAN access to only the necessary ports and use VLAN Access Control Lists (VACLs) to control traffic between VLANs.
+
+		- Spanning Tree Protocol (STP) Security:
+			BPDU Guard: Enable BPDU Guard on access ports to prevent rogue switches from sending Bridge Protocol Data Units (BPDUs), which can cause STP topology changes.
+			Root Guard: Implement Root Guard on ports where the switch should never become the root bridge to maintain a predictable STP topology.
+			Loop Guard: Use Loop Guard to protect against loops by ensuring that no traffic is sent on non-designated ports unless BPDUs are received.
+		- Address Resolution Protocol (ARP) Security
+			Dynamic ARP Inspection (DAI): Enable DAI to validate ARP packets against DHCP Snooping bindings, preventing ARP spoofing and man-in-the-middle attacks.
+			Static ARP Entries: For critical devices, consider using static ARP entries to ensure they communicate with the correct MAC addresses.
+		- Private VLANs (PVLANs)
+			Isolate Ports: Use private VLANs to isolate ports within the same VLAN, preventing direct communication between devices on the same subnet unless explicitly allowed.
+		- Switchport Security
+			Disable Unused Ports: Shut down unused switch ports to prevent unauthorized access.
+			Set Default VLAN: Assign unused ports to an unused VLAN to prevent unauthorized devices from accessing the network.
+			Administrative Controls: Restrict administrative access to switches using secure methods (e.g., SSH instead of Telnet) and strong authentication.
+		-802.1X Authentication
+			Network Access Control (NAC): Implement 802.1X for port-based network access control, ensuring that only authenticated and authorized devices can connect to the network.
+			Guest VLANs: Configure guest VLANs to provide limited access to unauthenticated users.
+		- Security for Wireless Networks
+			Separate Wireless VLANs: Place wireless traffic on separate VLANs to isolate it from wired traffic.
+			Strong Encryption: Use strong encryption methods (e.g., WPA3) for wireless communications.
+			Rogue AP Detection: Implement solutions to detect and mitigate rogue access points.
+		- Logging and Monitoring
+			Enable Logging: Enable logging on switches to capture security events and configuration changes.
+			Centralized Logging: Use centralized logging solutions for aggregation and easier analysis of log data.
+		- Network Hardening
+			Disable Unused Features: Disable any unused switch features and services to reduce the attack surface.
+			Secure SNMP: Use SNMPv3 for secure management and disable SNMPv1 and SNMPv2c.
+			Strong Passwords: Use strong, complex passwords for all switch management interfaces and change them regularly.
+		- Firmware and Software Updates
+			Regular Updates: Keep switch firmware and software up to date with the latest patches to protect against known vulnerabilities.
+			Vendor Security Advisories: Monitor vendor security advisories for critical updates and recommendations.
+
+	for L3 :
+
+		- Access Control Lists (ACLs)
+			Implement ACLs: Use ACLs to control and filter traffic between VLANs, subnets, and external networks. Define explicit allow and deny rules based on IP addresses, subnets, and protocols.
+			Deny by Default: Follow a deny-by-default approach, where only explicitly allowed traffic can pass through.
+			Restrict Management Access: Use ACLs to limit management access to routers and Layer 3 switches to authorized devices and users only.
+			
+		- Routing Protocol Security
+			Authentication: Enable authentication for routing protocols (e.g., OSPF, BGP, EIGRP) to prevent unauthorized devices from injecting malicious routing information. Use MD5 or SHA for stronger authentication.
+			Route Filtering: Implement route filtering to control which routes are accepted and advertised by your routers. This helps prevent route poisoning and other attacks.
+			Passive Interfaces: Configure passive interfaces on routers for interfaces that do not need to participate in routing protocol updates.
+
+		-  IP Address Management
+			Private IP Addressing: Use private IP addressing for internal networks to prevent direct routing from the internet.
+			IP Address Spoofing Protection: Implement anti-spoofing measures such as Unicast Reverse Path Forwarding (uRPF) to ensure packets are received from legitimate sources.
+			Dynamic Host Configuration Protocol (DHCP) Security: Secure DHCP by using DHCP snooping to prevent unauthorized DHCP servers and ensuring only trusted devices can provide DHCP services.
+
+		- Network Address Translation (NAT)
+			Use NAT: Use NAT to hide internal IP addresses from external networks. This helps obscure the internal network structure and reduces the attack surface.
+			Port Address Translation (PAT): Implement PAT to allow multiple devices to share a single public IP address, enhancing security and conserving IP addresses.
+
+		- IPv6 Security
+			IPv6 ACLs: Implement ACLs specifically for IPv6 traffic to control and filter IPv6 packets.
+			Disable Unused IPv6 Features: Disable unnecessary IPv6 features and services to reduce the attack surface.
+			IPv6 RA Guard: Use IPv6 Router Advertisement (RA) Guard to block unauthorized router advertisements on your network.
+
+		- Segmentation and Isolation
+			Network Segmentation: Use VLANs and subnets to segment the network and isolate sensitive systems. This limits the impact of a breach and controls traffic flow.
+			Inter-VLAN Routing: Secure inter-VLAN routing with ACLs and firewall rules to control traffic between segments.
+
+		-  Firewall and Intrusion Detection/Prevention Systems (IDS/IPS)
+			Deploy Firewalls: Use Layer 3 firewalls to inspect and control traffic between subnets and to/from the internet. Implement stateful inspection and deep packet inspection.
+			Implement IDS/IPS: Deploy IDS/IPS to detect and prevent malicious activities within the network. Place them strategically to monitor critical network segments.
+
+		- VPN and Encryption
+			Secure VPNs: Use VPNs to secure remote access and site-to-site connections. Implement strong encryption and authentication mechanisms (e.g., IPsec, SSL/TLS).
+			Encryption for Sensitive Data: Encrypt sensitive data in transit using protocols like TLS to protect against eavesdropping and man-in-the-middle attacks.
+
+		- Logging and Monitoring
+			Enable Logging: Enable logging on routers and Layer 3 switches to record events, ACL matches, and routing protocol activities.
+			Centralized Logging: Use centralized logging solutions to aggregate logs from multiple devices for easier analysis and correlation.
+			Continuous Monitoring: Implement continuous network monitoring to detect and respond to anomalies and potential security incidents.
+
+		- Firmware and Software Updates
+			Regular Updates: Keep router and switch firmware and software up to date with the latest patches and updates to protect against known vulnerabilities.
+			Vendor Advisories: Monitor vendor advisories for security updates and recommendations.
+
+		- Network Hardening
+			Disable Unused Services: Disable any unused services and features on routers and Layer 3 switches to reduce the attack surface.
+			Secure SNMP: Use SNMPv3 for secure network management and disable SNMPv1 and SNMPv2c.
+			Strong Passwords: Use strong, complex passwords for all network device accounts and change them regularly.
+		-Authentication: Enable authentication for routing protocols (e.g., OSPF, BGP, EIGRP) to prevent unauthorized devices from injecting malicious routing information. Use MD5 or SHA for stronger authentication.
+
+		-Private IP Addressing: Use private IP addressing for internal networks to prevent direct routing from the internet.
+
+		- Nat 
+		- Secure SNMP: Use SNMPv3 for secure network management and disable SNMPv1 and SNMPv2c.
+
+
+report : 
+
+building : 
+
+1- add S2 topology : getting a sub net of the 192.168.0.128/26 as a already have 4 subnets and been using 3 till now ,adding the vlans for each of the departments included in the assignment 
+2- start invistigating vlans and how to build them adding a management vlan at the beginning 
+- change native vlan for security purposes  
+- dont forget to change the ntive vlan 
+- as a result use L3 switch to see what we got 
+- applying STP for implementing network redudancy and prevent broadcast storms do not forget to add the root bridge 
+- using the FHRP (HSRP)you are using active and stand by gate wa to prevent single point of failur assigning different gate way for vlans to load balance the traffic one router is active in vlan and second router is standby in vlan and the oppisitehappens for the other vlans 
+
+
+security flows : 
+1- none of the network devices has any type of security configuration 
+2- 
+
+
+- standby version 2
+- standby 10 ip vip
+- -- priority  200
+- -- preempt
+- show standby
+thats all 
