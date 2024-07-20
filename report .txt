@@ -186,4 +186,26 @@ password  do not use it here as it overrides the user password when trying to lo
 login
 
 
+
+
+ssh config 
+enable secret 12345
+lin con 0 
+password 12345
+login exit 
+lin vty 0 4 
+trans input ssh 
+login local exit 
+username admin priv 15 secret admin 
+crypt key gen rsa    512 
+vlan name 
+int vlan 
+ip 
+no shut 
+rip add route 
+loop bakc could be used for the routers 
+
+
+
+port security 
 no cdp run to stop getting the topology 
