@@ -138,3 +138,52 @@ security flows :
 - -- preempt
 - show standby
 thats all 
+
+
+redundancy part : 
+- i have build HSRP on two parts of the network and enforced load balancing on the vlan 70 to use switch() and vlan 40,50,60 to use the other switch () as their gateway to the centeral router , used HSRP version 2 with a virtual ip address of .254 screen shots 
+
+
+STP
+- connecting multiple links between switches to add backup and resilient links in case of failure 
+
+
+how to configure ip voice on different vlans : 
+https://www.youtube.com/watch?v=RB4LiS2lIXo
+
+
+viop network : 
+on s1 
+- configureing 2 dhcp pools for the data and voice traffic 
+- 2 different vlans for the voice and traffic 
+- assigning the same ports for the voice vlan and the data vlan you can do that 
+- configuring the ROAS on the router for the intervlan routing 
+- configuring a port to ba a trunk to serv the traffice for the vlans 
+- configure the telephoney service on the router and the dialing number for the phones 
+
+
+l2 security :  arp inspection ,dhcp snooping ,port security 
+port security : 1 mac is allowed but not the case on ip phone as we have 2 mac addreses prevents dhcp starving attack 
+- have to be on a trunk or access ports not adynamic ports 
+errdisable recovery cause pscure-violation
+
+
+switch passwordsecurity 
+enable secret pass
+line con 0 
+pass
+login 
+
+
+Switch(config)# ip domain-name YOUR_DOMAIN_NAME
+
+Switch(config)# crypto key generate rsa
+
+Switch(config)# username YOUR_USERNAME secret YOUR_USER_PASSWORD
+
+line vty 0 4 
+password  do not use it here as it overrides the user password when trying to login using ssh 
+login
+
+
+no cdp run to stop getting the topology 
