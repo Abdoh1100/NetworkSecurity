@@ -1,0 +1,4 @@
+part one about the gate for vlan 50 and 60 
+vlan 50 should take the way through T2SW2
+and vlan 60 should take the way through T2SW1
+part 2 picture is the evidence through tracrt command 
